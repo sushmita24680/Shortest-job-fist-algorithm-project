@@ -24,7 +24,7 @@ double average_total_around_time;
 int total__around_time;
 
 
-
+void given_table( Process p[],int n);
 void sort_process_by_burst_time(Process p[], int n);
 void calculate_completion_time(Process p[], int n);
 void calculate_waiting_time(Process p[], int n);
@@ -75,7 +75,22 @@ int main()
     return 0;
 }
 
+void given_table( Process p[],int n)
+{
+    printf("\n given Table below:");
+    printf("\n\t _________ ____________ ____________");
+    printf("\n\t| Process |Arrival Time| Burst Time |");
+    
+for(int i=0;i<n;i++)
 
+{
+
+printf("\n\t  p%d\t        %d            %d      ",p[i].pid,p[i].arrival_time,p[i].burst_time);
+
+}
+ printf("\n\t|_________|____________|____________|\n");
+    
+}
 
 void sort_process_by_burst_time(Process p[], int n)
 {
