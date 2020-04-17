@@ -1,2 +1,2 @@
-# Shortest-job-fist-algorithm-project
+# Shortest-job-first-algorithm-project
 Scheduling Approach
