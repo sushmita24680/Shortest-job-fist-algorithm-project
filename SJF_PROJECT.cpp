@@ -24,11 +24,13 @@ double average_total_around_time;
 int total__around_time;
 
 //global member function
+
 void given_table( Process p[],int n);   // forming table given in question 
 void sort_process_by_burst_time(Process p[], int n);  //sorting through bubble sort
 void calculate_completion_time(Process p[], int n);   // calculating completion time
 void calculate_waiting_time(Process p[], int n);     // calculating waiting time
 void calculate_total_around_time(Process p[], int n);  // calculating total aound time
+void print_gantt_chart(Process p[], int n);   // for drawing the gantt chart
 void table( Process p[],int n); //final table with total around time and waiting time
 
 
@@ -61,6 +63,9 @@ int main()             // main funtion
    
   calculate_total_around_time(p, n);
     calculate_waiting_time(p, n);
+     printf("\nGantt Chart:\n");    //gantt chart of compeletion
+    print_gantt_chart(p, n);
+    
         table( p, n);
     average_total_around_time = (double) ( (double)total__around_time / (double) n );
     
@@ -120,6 +125,41 @@ void calculate_completion_time(Process p[], int n)
         total_completion_time+=p[i].burst_time;
         p[i].completion_time = total_completion_time;
        
+    }
+}
+
+void print_gantt_chart(Process p[], int n)
+{
+    int i, j;
+    int last = p[n-1].burst_time + ( n== 1 ? 0 : p[n-1].completion_time);
+    // printing top bar
+    printf(" ");
+    for(i=0; i<n; i++) {
+        for(j=0; j<8; j++) printf("--");
+          printf(" ");
+    }
+    printf("\n|");
+    // middle position
+    for(i=0; i<n; i++) {
+        for(j=0; j<8-1; j++) printf(" ");
+        printf("p%d", p[i].pid);
+        for(j=0; j<8-1; j++) printf(" ");
+        printf("|");
+    }
+    printf("\n ");
+    // bottom bar
+    for(i=0; i<n; i++) {
+        for(j=0; j<8; j++) printf("--");
+        printf(" ");
+    }
+    printf("\n");
+
+     printf("%d \t\t ", 0);
+    
+    for(i=0; i<n; i++) {
+       
+        printf("%d \t\t ", p[i].completion_time);    // printing completion time
+        
     }
 }
 
