@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
+#define MAX_PROCESS 20
 
 struct process {
     int pid;
@@ -16,27 +16,28 @@ struct process {
 
 typedef struct process Process;
 
-
+//global data members
 double average_waiting_time;
 int total_waiting_time;
 
 double average_total_around_time;
 int total__around_time;
 
-
+//global member function
 void given_table( Process p[],int n);
 void sort_process_by_burst_time(Process p[], int n);
 void calculate_completion_time(Process p[], int n);
 void calculate_waiting_time(Process p[], int n);
 void calculate_total_around_time(Process p[], int n);
+void table( Process p[],int n);
 
 
 int main()
 {
-    Process p[4];
+    Process p[MAX_PROCESS];
     int n, i, j;
     
-
+    puts("\n Shortest Job First Scheduling Algorithm::");
     printf("Enter total process: ");
     scanf("%d", &n);
     printf("Enter burst time for each process:\n");
@@ -60,11 +61,12 @@ int main()
     
     calculate_total_around_time(p, n);
     calculate_waiting_time(p, n);
-    table( p, n);                   // final table formed
+        table( p, n);
     average_total_around_time = (double) ( (double)total__around_time / (double) n );
     
   
     average_waiting_time = (double) ( (double)total_waiting_time / (double) n );
+
 
     puts("");
     printf("=> Average Total Around Time: %.2lf\n",average_total_around_time);
@@ -143,6 +145,23 @@ void calculate_waiting_time(Process p[], int n)
         p[i].waiting_time =abs( p[i].total_around_time - p[i].burst_time);
         total_waiting_time += p[i].waiting_time;
     }
+    
 }
+
+void table( Process p[],int n)
+{  printf("\n\nTable formed below:");
+    printf("\n\t _________ ____________ ____________ ________________ _____________");
+    printf("\n\t| Process |Arrival Time| Burst Time | Turnaround Time| Waiting Time|");
+    
+for(int i=0;i<n;i++)
+
+{
+
+printf("\n\t  p%d\t        %d            %d          %d\t\t \t%d     ",p[i].pid,p[i].arrival_time,p[i].burst_time,p[i].total_around_time,p[i].waiting_time);
+
+}
+printf("\n\t|_________|____________|____________|________________|_____________|\n");
+}
+
 
 
