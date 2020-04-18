@@ -5,7 +5,7 @@
 
 #define MAX_PROCESS 20
 
-struct process {
+struct process {         // structure of process 
     int pid;
     int arrival_time;
     int burst_time;
@@ -24,20 +24,21 @@ double average_total_around_time;
 int total__around_time;
 
 //global member function
-void given_table( Process p[],int n);
-void sort_process_by_burst_time(Process p[], int n);
-void calculate_completion_time(Process p[], int n);
-void calculate_waiting_time(Process p[], int n);
-void calculate_total_around_time(Process p[], int n);
-void table( Process p[],int n);
+void given_table( Process p[],int n);   // forming table given in question 
+void sort_process_by_burst_time(Process p[], int n);  //sorting through bubble sort
+void calculate_completion_time(Process p[], int n);   // calculating completion time
+void calculate_waiting_time(Process p[], int n);     // calculating waiting time
+void calculate_total_around_time(Process p[], int n);  // calculating total aound time
+void table( Process p[],int n); //final table with total around time and waiting time
 
 
-int main()
+int main()             // main funtion
 {
     Process p[MAX_PROCESS];
     int n, i, j;
     
-    puts("\n Shortest Job First Scheduling Algorithm::");
+    puts("\n\t\t\t::Shortest Job First Scheduling Algorithm::");
+    puts("\t\t\t=======================================");
     printf("Enter total process: ");
     scanf("%d", &n);
     printf("Enter burst time for each process:\n");
@@ -58,8 +59,7 @@ int main()
     calculate_completion_time(p, n);
    
    
-    
-    calculate_total_around_time(p, n);
+  calculate_total_around_time(p, n);
     calculate_waiting_time(p, n);
         table( p, n);
     average_total_around_time = (double) ( (double)total__around_time / (double) n );
